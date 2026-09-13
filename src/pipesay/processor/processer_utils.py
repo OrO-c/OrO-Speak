@@ -9,7 +9,7 @@ import translators as ts
 from cowsay import cowsay, list_cows
 from openai import OpenAI
 
-from src.pipesay.processor.base import processor
+from pipesay.processor.base import processor
 
 
 @processor('reverse')

@@ -20,12 +20,12 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 
 从网络获取一言并输出到终端：
 ```bash
-    python -m src.pipesay.main hitokoto -o test2.yaml
+    python -m pipesay.main hitokoto -o test2.yaml
 ```
 
 从本地文件读取、加工后输出：
 ```bash
-    python -m src.pipesay.main local -f ./cowsay.txt -s test.yaml -o test2.yaml
+    python -m pipesay.main local -f ./cowsay.txt -s test.yaml -o test2.yaml
 ```
 ## 命令行
 ```text
@@ -69,7 +69,7 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 
 新增处理器：
 ```python
-    from src.pipesay.processor.base import processor
+    from pipesay.processor.base import processor
 
     @processor('shout')
     def shout(sentences: list, mark: str = '!', log=None):
@@ -78,7 +78,7 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 ```
 新增输出器：
 ```python
-    from src.pipesay.outputers.base import outputer
+    from pipesay.outputers.base import outputer
 
     @outputer('count')
     def count(sentences: list, log=None):
@@ -89,8 +89,8 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 
 查看已注册的步骤：
 ```python
-    from src.pipesay.processor.base import Processor
-    from src.pipesay.outputers.base import Outputer
+    from pipesay.processor.base import Processor
+    from pipesay.outputers.base import Outputer
 
     Processor.list_all()
     Outputer.list_all()

@@ -5,7 +5,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from src.pipesay.constants.constants import YIYAN_CATEGORY
+from pipesay.constants.constants import YIYAN_CATEGORY
 
 
 class Fetcher:

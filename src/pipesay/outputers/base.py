@@ -1,5 +1,5 @@
-from src.pipesay.core.pipeline import Pipeline
-from src.pipesay.core.registry import register
+from pipesay.core.pipeline import Pipeline
+from pipesay.core.registry import register
 
 OUTPUTER_REGISTRY: dict = {}
 
