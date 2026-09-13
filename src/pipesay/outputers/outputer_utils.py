@@ -2,8 +2,8 @@ import asyncio
 
 from desktop_notifier import DesktopNotifier, Urgency
 
-from outputers.base import outputer
-from utils.utils import clear_screen, enter_to_next
+from src.pipesay.outputers.base import outputer
+from src.pipesay.utils.utils import clear_screen, enter_to_next
 
 
 @outputer('term')

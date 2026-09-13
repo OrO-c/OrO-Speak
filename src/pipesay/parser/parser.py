@@ -1,6 +1,6 @@
 import argparse
 
-from constants import constants
+from src.pipesay.constants import constants
 
 
 def _arg_parser() -> argparse.Namespace:
