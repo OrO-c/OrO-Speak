@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pipesay"
+version = "0.0.1"
+description = "一个用管道处理句子的趣味输出工具"
+readme = "README"
+requires-python = ">=3.9"
+dependencies = [
+    "python-cowsay",
+    "desktop_notifier",
+    "jieba",
+    "openai",
+    "pyaml",
+    "requests",
+    "translators",
+    "urllib3"
+]
+
+[project.scripts]
+pipesay = "pipesay.main:main"
