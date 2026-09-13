@@ -6,7 +6,7 @@ from constants import constants
 def _arg_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='OrOspeak句子流水线')
     parser.add_argument('-g', '--generations', type=int, default=1, help='生成次数（默认：1）')
-    parser.add_argument('-s', '--speaker-config', dest="speaker_config", type=str, default=None, help='speaker流水线配置')
+    parser.add_argument('-s', '--processer-config', dest="processer_config", type=str, default=None, help='processer流水线配置')
     parser.add_argument('-o', '--outputer-config', dest="outputer_config", type=str, default=None, help='outputer流水线配置')
     
     subparsers = parser.add_subparsers(dest='mode', required=True, help='选择获取模式')
@@ -47,7 +47,7 @@ def arg_process():
         "generations": args.generations,
         "file_path": args.file if args.mode == 'local' else None,
         "category": args.category if args.mode == 'hitokoto' else None,
-        "speaker_config": args.speaker_config,
+        "processer_config": args.processer_config,
         "outputer_config": args.outputer_config
     }
     return config

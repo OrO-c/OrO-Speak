@@ -9,10 +9,10 @@ import translators as ts
 from cowsay import cowsay, list_cows
 from openai import OpenAI
 
-from speakers.base import speaker
+from processer.base import processer
 
 
-@speaker('reverse')
+@processer('reverse')
 def reverse(sentences: list, log=None):
     """反转字符串"""
     rl = []
@@ -20,7 +20,7 @@ def reverse(sentences: list, log=None):
         rl.append(s[::-1])
     return rl
 
-@speaker('to_weak')
+@processer('to_weak')
 def toweak(sentences: list, log=None):
     """让你的话变得虚弱无比"""
     PUNCT = set("，。！？；：、")
@@ -40,23 +40,33 @@ def toweak(sentences: list, log=None):
         if current:
             parts.append(current)
 
+        # 先找出所有可分词的片段索引
+        word_part_indices = [i for i, p in enumerate(parts) if p not in PUNCT]
+
+        # 整句只选一个片段来插入省略号
+        if word_part_indices:
+            chosen = random.choice(word_part_indices)
+        else:
+            chosen = None
+
         result = []
-        for part in parts:
+        for i, part in enumerate(parts):
             if part in PUNCT:
                 result.append(part)
             else:
                 words = jieba.lcut(part)
                 if not words:
                     continue
-                idx = random.randint(1, len(words) - 1) if len(words) > 1 else 0
-                words.insert(idx, "……")
+                if i == chosen:
+                    idx = random.randint(1, len(words) - 1) if len(words) > 1 else 0
+                    words.insert(idx, "……")
                 result.extend(words)
 
         return_list.append(''.join(result))
 
     return return_list
 
-@speaker('i18n')
+@processer('i18n')
 def i18n(sentences, lan: list, log=None):
     """保持你原来的函数签名和封装结构"""
     def _translate_one(s, l):
@@ -78,7 +88,7 @@ def i18n(sentences, lan: list, log=None):
     return rl
 
 
-@speaker('ads')
+@processer('ads')
 def ads(sentences, base_url: str, model: str, api_key: str, category: list | None = None, log=None):
     
     if category is None:
@@ -140,7 +150,7 @@ def ads(sentences, base_url: str, model: str, api_key: str, category: list | Non
     
     return result
 
-@speaker('cowsay')
+@processer('cowsay')
 def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=None):
     rl = []
     
@@ -156,7 +166,7 @@ def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=Non
     return rl
 
 
-@speaker('ban')
+@processer('ban')
 def ban(sentences: list, ban_count: int=1, log=None):
     
     rl = []
@@ -170,7 +180,7 @@ def ban(sentences: list, ban_count: int=1, log=None):
     
     return rl
 
-@speaker('rep2')
+@processer('rep2')
 def replace_repeat(sentences: list, rep_sen: str, log=None):
     """
     将rep_sen中的内容循环重复替换sen内容

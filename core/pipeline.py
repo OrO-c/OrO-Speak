@@ -10,7 +10,7 @@ class Pipeline:
     子类只需要提供：
         - registry：注册表字典
         - section：配置里的键名（'pipeline' / 'outputs'）
-        - label：日志里显示的名字（'Speaker' / 'Outputer'）
+        - label：日志里显示的名字（'Processer' / 'Outputer'）
     """
     registry: dict = {}
     section: str = ''
@@ -32,7 +32,7 @@ class Pipeline:
         current = items
         total = len(self.steps)
         for idx, step in enumerate(self.steps, 1):
-            name = step.get('name') or step.get('speaker') or step.get('outputer')
+            name = step.get('name') or step.get('processer') or step.get('outputer')
             params = step.get('params', {})
 
             if name not in self.registry:
