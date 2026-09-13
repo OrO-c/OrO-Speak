@@ -9,10 +9,10 @@ import translators as ts
 from cowsay import cowsay, list_cows
 from openai import OpenAI
 
-from src.pipesay.processer.base import processer
+from src.pipesay.processor.base import processor
 
 
-@processer('reverse')
+@processor('reverse')
 def reverse(sentences: list, log=None):
     """反转字符串"""
     rl = []
@@ -20,7 +20,7 @@ def reverse(sentences: list, log=None):
         rl.append(s[::-1])
     return rl
 
-@processer('to_weak')
+@processor('to_weak')
 def toweak(sentences: list, log=None):
     """让你的话变得虚弱无比"""
     PUNCT = set("，。！？；：、")
@@ -66,7 +66,7 @@ def toweak(sentences: list, log=None):
 
     return return_list
 
-@processer('i18n')
+@processor('i18n')
 def i18n(sentences, lan: list, log=None):
     """保持你原来的函数签名和封装结构"""
     def _translate_one(s, l):
@@ -88,7 +88,7 @@ def i18n(sentences, lan: list, log=None):
     return rl
 
 
-@processer('ads')
+@processor('ads')
 def ads(sentences, base_url: str, model: str, api_key: str, category: list | None = None, log=None):
     
     if category is None:
@@ -150,7 +150,7 @@ def ads(sentences, base_url: str, model: str, api_key: str, category: list | Non
     
     return result
 
-@processer('cowsay')
+@processor('cowsay')
 def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=None):
     rl = []
     
@@ -166,7 +166,7 @@ def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=Non
     return rl
 
 
-@processer('ban')
+@processor('ban')
 def ban(sentences: list, ban_count: int=1, log=None):
     
     rl = []
@@ -180,7 +180,7 @@ def ban(sentences: list, ban_count: int=1, log=None):
     
     return rl
 
-@processer('rep2')
+@processor('rep2')
 def replace_repeat(sentences: list, rep_sen: str, log=None):
     """
     将rep_sen中的内容循环重复替换sen内容

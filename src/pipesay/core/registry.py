@@ -6,7 +6,7 @@ def register(registry: dict, name: str | None = None):
     """
     通用注册装饰器。
     用法：
-        @register(PROCESSER_REGISTRY, 'reverse')
+        @register(PROCESSOR_REGISTRY, 'reverse')
         def reverse(sentences, log=None): ...
     """
     def decorator(func: Callable):

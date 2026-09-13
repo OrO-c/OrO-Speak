@@ -6,7 +6,7 @@ from src.pipesay.constants import constants
 def _arg_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='OrOspeak句子流水线')
     parser.add_argument('-g', '--generations', type=int, default=1, help='生成次数（默认：1）')
-    parser.add_argument('-s', '--processer-config', dest="processer_config", type=str, default=None, help='processer流水线配置')
+    parser.add_argument('-s', '--processor-config', dest="processer_config", type=str, default=None, help='processer流水线配置')
     parser.add_argument('-o', '--outputer-config', dest="outputer_config", type=str, default=None, help='outputer流水线配置')
     
     subparsers = parser.add_subparsers(dest='mode', required=True, help='选择获取模式')

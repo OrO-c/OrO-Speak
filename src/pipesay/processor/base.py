@@ -1,21 +1,21 @@
 from src.pipesay.core.pipeline import Pipeline
 from src.pipesay.core.registry import register
 
-PROCESSER_REGISTRY: dict = {}
+PROCESSOR_REGISTRY: dict = {}
 
 
-def processer(name: str | None = None):
-    return register(PROCESSER_REGISTRY, name)
+def processor(name: str | None = None):
+    return register(PROCESSOR_REGISTRY, name)
 
 
-class Processer(Pipeline):
-    registry = PROCESSER_REGISTRY
+class Processor(Pipeline):
+    registry = PROCESSOR_REGISTRY
     section = 'pipeline'
-    label = 'Processer'
+    label = 'Processor'
 
     def process(self, sentences: list) -> list:
         return self.run(sentences)
 
     @staticmethod
     def list_processers():
-        Processer.list_all()
+        Processor.list_all()
