@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "pipesay"
 version = "0.0.1"
 description = "一个用管道处理句子的趣味输出工具"
-readme = "README"
+readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "python-cowsay",
