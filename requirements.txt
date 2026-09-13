@@ -1,4 +1,4 @@
-cowsay==6.1
+python-cowsay==6.1
 desktop_notifier==6.2.0
 jieba==0.42.1
 openai==3.13.0
