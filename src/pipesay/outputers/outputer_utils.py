@@ -38,7 +38,7 @@ async def notify(sentences: list, level: str='normal', log=None):
 
     for message in sentences:
         await notifier.send(
-            title="OrOspeak",
+            title="PipeSay",
             message=message,
             urgency=urgency,
             sound=True,
