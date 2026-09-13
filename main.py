@@ -1,10 +1,10 @@
-from fetcher.fetcher import Fetcher
-from outputers import outputer_utils  # noqa: F401
-from outputers.base import Outputer
-from parser.parser import arg_process
-from processer import processer_utils  # noqa: F401
-from processer.base import Processer
-from utils.utils import clear_screen, enter_to_next
+from src.pipesay.fetcher.fetcher import Fetcher
+from src.pipesay.outputers import outputer_utils  # noqa: F401
+from src.pipesay.outputers.base import Outputer
+from src.pipesay.parser.parser import arg_process
+from src.pipesay.processer import processer_utils  # noqa: F401
+from src.pipesay.processer.base import Processer
+from src.pipesay.utils.utils import clear_screen, enter_to_next
 
 
 def main():
