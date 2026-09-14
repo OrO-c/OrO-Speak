@@ -20,23 +20,21 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 
 从网络获取一言并输出到终端：
 ```bash
-    python -m pipesay hitokoto -o test2.yaml
+    python -m pipesay hitokoto -p test2.yaml
 ```
 
 从本地文件读取、加工后输出：
 ```bash
-    python -m pipesay local -f ./cowsay.txt -s test.yaml -o test2.yaml
+    python -m pipesay local -f ./cowsay.txt -p test.yaml
 ```
 ## 命令行
 ```text
-    usage: pipesay [-h] [-g GENERATIONS] [-s PROCESSER_CONFIG] [-o OUTPUTCONFIG] {local,hitokoto} ...
+    usage: pipesay [-h] [-g GENERATIONS] [-p PIPELINE_CONFIG] {local,hitokoto} ...
 ```
 | 参数 | 说明 | 默认值 |
 | --- | --- | --- |
 | `-g, --generations` | 生成次数 | `1` |
-| `-s, --processor-config` | 处理器流水线配置 | `None` |
-| `-o, --outputer-config` | 输出器流水线配置 | `None` |
-
+| `-s, --pipeline-config` | 流水线配置 | `None` |
 子命令：
 
 - `local`：`-f/--file` 指定本地文件（默认 `./cowsay.txt`）。
@@ -110,8 +108,8 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 ## 工作原理
 ```text
     Fetcher ──▶ Processor ──▶ Outputer
-                  ▲               ▲
-             pipeline.yaml   outputs.yaml
+                    ▲              ▲
+                    └ pipeline.yaml┘
 ```
 1. `Fetcher` 按模式返回 `list[str]`。
 2. `Processor` 读取 `pipeline` 段，按序加工并逐级传递。
