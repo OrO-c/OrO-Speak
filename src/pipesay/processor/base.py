@@ -10,7 +10,7 @@ def processor(name: str | None = None):
 
 class Processor(Pipeline):
     registry = PROCESSOR_REGISTRY
-    section = 'pipeline'
+    section = 'processes'
     label = 'Processor'
 
     def process(self, sentences: list) -> list:
