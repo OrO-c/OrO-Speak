@@ -25,7 +25,18 @@ class Pipeline:
         else:
             raise ValueError("必须提供 config_path 或 config_dict")
 
-        self.steps = self.config.get(self.section, [])
+        if self.section not in self.config:
+            available = [k for k in self.config if k != 'global']
+            raise ValueError(
+                f"配置文件里找不到 {self.label} 需要的配置项 '{self.section}'。\n"
+                f"  配置文件: {self.config_source}\n"
+                f"  顶层已有的配置项: {available or '（空）'}\n"
+                f"  请确认配置项名称是否拼写正确。"
+            )
+        # 注意：`processes: []` 或 `processes:`（值为 null）是合法配置，
+        # 表示该环节有意留空、不执行任何步骤，此处静默转为空列表通过，
+        # 不视为错误。只有 key 完全缺失才算配置错误（见上方检查）。 
+        self.steps = self.config[self.section] or []
         self.global_config = self.config.get('global', {})
 
     def run(self, items: list) -> list:
