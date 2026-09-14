@@ -20,16 +20,16 @@ PipeSay 将句子处理抽象为一条可配置的流水线。每个环节都通
 
 从网络获取一言并输出到终端：
 ```bash
-    python -m pipesay.main hitokoto -o test2.yaml
+    python -m pipesay hitokoto -o test2.yaml
 ```
 
 从本地文件读取、加工后输出：
 ```bash
-    python -m pipesay.main local -f ./cowsay.txt -s test.yaml -o test2.yaml
+    python -m pipesay local -f ./cowsay.txt -s test.yaml -o test2.yaml
 ```
 ## 命令行
 ```text
-    usage: main.py [-h] [-g GENERATIONS] [-s PROCESSER_CONFIG] [-o OUTPUTCONFIG] {local,hitokoto} ...
+    usage: pipesay [-h] [-g GENERATIONS] [-s PROCESSER_CONFIG] [-o OUTPUTCONFIG] {local,hitokoto} ...
 ```
 | 参数 | 说明 | 默认值 |
 | --- | --- | --- |
