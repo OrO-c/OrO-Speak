@@ -135,7 +135,7 @@ class Fetcher:
             list: 句子列表
         """
         sentences = []
-        with open(file=self.file_path, mode="r") as f:
+        with open(file=self.file_path, mode="r", encoding="utf-8") as f:
             local_sentence = f.readlines()
             for i in range(self.generations):
                 sentences.append(random.choice(local_sentence))

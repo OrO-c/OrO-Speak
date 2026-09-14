@@ -26,15 +26,15 @@ def arg_process():
         raise ValueError("请输入一个正整数生成次数")
     if args.mode == "local":
         if args.file == constants.DEFAULT_FILE:
-            with open(args.file, 'a+') as f:
+            with open(args.file, 'a+', encoding="utf-8") as f:
                 first_char = f.read(1)
                 if not first_char:
                     print("语录文件是空的，已为您创建并写入了一定的内置语句")
-                    with open(args.file, 'w') as fw:
+                    with open(args.file, 'w', encoding="utf-8") as fw:
                         fw.writelines(constants.DEFAULT_LINES)
         else:
             try:
-                with open(args.file, 'r') as f:
+                with open(args.file, 'r', encoding="utf-8") as f:
                     first_char = f.read(1)
                     if not first_char:
                             raise RuntimeError(f"{args.file}是空的！")
