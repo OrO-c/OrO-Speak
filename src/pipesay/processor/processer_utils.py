@@ -1,14 +1,3 @@
-import json
-import random
-import time
-import unicodedata
-from concurrent.futures import ThreadPoolExecutor
-
-import jieba
-import translators as ts
-from cowsay import cowsay, list_cows
-from openai import OpenAI
-
 from pipesay.processor.base import processor
 
 
@@ -23,6 +12,10 @@ def reverse(sentences: list, log=None):
 @processor('to_weak')
 def toweak(sentences: list, log=None):
     """让你的话变得虚弱无比"""
+    import random
+
+    import jieba
+    
     PUNCT = set("，。！？；：、")
     return_list = []
 
@@ -69,6 +62,12 @@ def toweak(sentences: list, log=None):
 @processor('i18n')
 def i18n(sentences, lan: list, log=None):
     """保持你原来的函数签名和封装结构"""
+    import time
+    import unicodedata
+    from concurrent.futures import ThreadPoolExecutor
+
+    import translators as ts
+    
     def _translate_one(s, l):
         translated = ts.translate_text(s, translator='bing', to_language=l)
         fixed = unicodedata.normalize('NFKC', translated)
@@ -90,6 +89,9 @@ def i18n(sentences, lan: list, log=None):
 
 @processor('ads')
 def ads(sentences, base_url: str, model: str, api_key: str, category: list | None = None, log=None):
+    import json
+
+    from openai import OpenAI
     
     if category is None:
         category = ['美食', '科技', '美妆', '旅行', '亲子']
@@ -152,6 +154,9 @@ def ads(sentences, base_url: str, model: str, api_key: str, category: list | Non
 
 @processor('cowsay')
 def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=None):
+    import random
+
+    from cowsay import cowsay, list_cows
     rl = []
     
     if random_cow:
@@ -168,7 +173,7 @@ def cow(sentences: list, cow: str = "default", random_cow: bool = False, log=Non
 
 @processor('ban')
 def ban(sentences: list, ban_count: int=1, log=None):
-    
+    import random
     rl = []
     
     for s in sentences:
