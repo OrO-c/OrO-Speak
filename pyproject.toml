@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "pipesay"
-version = "0.0.3"
+dynamic = ["version"]
 description = "一个用管道处理句子的趣味输出工具"
 readme = "README.md"
 requires-python = ">=3.9"
